@@ -1,25 +1,6 @@
 #
 # site specific initializations
-# PATH gets set here based on MACH_PATH_HEAD and MACH_PATH_TAIL (from
-# machtype.sh) and GENERIC_PATH (from profile.sh)
-#
-PATH=$MACH_PATH_HEAD:$GENERIC_PATH:$MACH_PATH_TAIL
 
-#MANPATH="/usr/local/man:/usr/man:/opt/CZtcsh/man:/opt/FSFemacs/man:/opt/FSFgcc/man:/opt/FSFgzip/man:/opt/FSFlibg++/man:/opt/WLtop/man:/opt/texmf/doc/man:/opt/matlab/man:/opt/FSFbash/man:/opt/GNUperl/man:/opt/FSFrcs/man:/opt/FSFgmake/man"
-
-# invoke host specific stuff here
-
-# do machine dependent stuff for this machine type
-if [ -r ~/.k_${MACHTYPE} ]
-then 
-    . ~/.k_${MACHTYPE}
-fi
-
-# do machine dependent stuff for this host
-if [ -r ~/.k_${HOST} ] 
-then 
-    . ~/.k_${HOST} 
-fi
 
 export CVSROOT=~/CVSROOT
 export CVS_RSH=ssh

@@ -1,5 +1,5 @@
 #
-#	Baroque korn shell enviornment for cander
+#	Baroque bash shell enviornment for cander
 #
 
 # this script uses some auxilary files if they exist
@@ -13,22 +13,24 @@
 #	~/.khistory_HOSTNAME
 #	~/.kdir_HOSTNAME
 
-DOT=~/dot-files
+#DOT=~/dot-files
+### HACK DURING TESTING
+DOT=~/dot-files/new
 cd
 alias whence='type -path'
 alias which='type'
 alias print='echo'
 
-GENERIC_PATH=~/shbin:/usr/local/bin:/usr/local/shbin:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local:/usr/games:/usr/etc:/usr/ucb
+GENERIC_PATH=.:~/shbin:/usr/local/bin:/usr/local/sbin:/usr/local/shbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin
+GENERIC_MANPATH=/usr/man:/usr/local/man:/usr/share/man:/usr/X11R6/man
 
 # Figure out what kind of machine we're on
-if [ -r $DOT/machtype.ksh ] 
+if [ -r $DOT/machtype.bash ] 
 then
-    . $DOT/machtype.ksh
+    . $DOT/machtype.bash
 else
-    echo "$DOT/machtype.ksh does not exist!  Defaulting PATH."
-    MACH_PATH_HEAD=.
-    MACH_PATH_TAIL=..
+    echo "$DOT/machtype.bash does not exist!  Defaulting PATH."
+    PATH=$GENERIC_PATH
 fi
 
 if [ -r $DOT/site.sh ]

@@ -1,0 +1,6 @@
+[ui]
+username = Charles Anderson<master.sparkle@gmail.com>
+
+[extensions]
+hgext.convert=
+hgk=

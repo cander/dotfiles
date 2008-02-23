@@ -72,7 +72,7 @@ then
 
     function xname { echo "]0;$1"; }
     # xname $HOST
-    function xtitle { echo "]2;$1"; }
+    function xtitle { echo -n "]2;$1"; }
     function pmt {
         setPS1
         xtitle "$HOST:$PWD"

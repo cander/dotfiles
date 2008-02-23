@@ -30,12 +30,8 @@ then
 	term="unknown"
     fi
 else
-    if [ $TERM = "dialup" ]
-    then
-	term=$HOMECRT;
-    else
-	term=$TERM
-    fi
+    # TERM is set - use it
+    term=$TERM
 fi
 
 echonl "TERM = ($term) "  1>&2
@@ -50,14 +46,9 @@ export TERM ; TERM=$term
 
 
 stty -nl tostop kill  erase  intr  
-if [ "$OSTYPE" = "svr4" ]
-then
-#    stty iexten echoke echoctl
-    :
-fi
-
 
 function setPS1 { 
+    # TODO is there a bash way to substring this down?
     pstr=`echo ${PWD} | \
     awk '{if (length($0) > 35) \
 	    print "..." substr($0, length($0) - 30); \
@@ -66,7 +57,7 @@ function setPS1 {
     PS1="[${HOST}] $pstr " 
 }
 
-if [ "$TERM" = "xterm" -o "$TERM" = \'xterm\' ]
+if [ "$TERM" = "xterm" -o "$TERM" = "xterm-color" -o "$TERM" = \'xterm\' ]
 then
     TERM=xterm
     unset TERMCAP
@@ -83,19 +74,11 @@ then
     # xname $HOST
     function xtitle { echo "]2;$1"; }
     function pmt {
-	setPS1
-	xtitle "$HOST:$PWD"
+        setPS1
+        xtitle "$HOST:$PWD"
     }
 else
     function pmt {
-	setPS1
+        setPS1
     }
-
-    if [ "$TERM" = "hp" -o "$TERM" = "hpterm" ]
-    then
-	# assume that resize is always available on hp's
-	unset TERMCAP
-	eval `resize`
-	export TERMCAP
-    fi
 fi

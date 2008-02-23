@@ -7,7 +7,7 @@
 # to deal with that in here
 alias ls='ls -CF'
 
-UNAME=`uanme`
+UNAME=`uname`
 case $UNAME in
     Darwin)
         # add some mechanism to search /Applications and /Developer

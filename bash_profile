@@ -15,7 +15,7 @@
 
 #DOT=~/dot-files
 ### HACK DURING TESTING
-DOT=~/dot-files/new
+DOT=~/src/dot-files
 cd
 alias whence='type -path'
 alias which='type'

@@ -7,101 +7,65 @@
 #	d ------ select a directory from the directory stack
 #	rd ------ remember directory stack
 #	pmt ---- updates the prompt (defined in ".kseterm")
+#
 
-function	sd	{ 
+function	cd	{ 
     command cd $@ > /dev/null
     pmt
 }
 
-alias cd='sd'
+#alias cd='sd'
 
 alias	bk='sd -'
-
-function	pd	{
-    if [ $# -gt 0 ] ; then
-	if cd $1 > /dev/null 
-	then
-	    dirs="$dirs $OLDPWD"
-	fi
-    else
-	if pp 
-	then
-	    dirs="$dirs $OLDPWD"
-	    fi
-    fi 
+function pd {
+    pushd "$1"
+    pmt
 }
-
-function	pp	{
-    case ${dirs:-EMPTY} in
-	EMPTY)
-	    print directory stack is empty >&2
-	    unset dirs
-	    return 1;;
-	*)
-	    #echo "Start: $dirs"
-	    typeset d="${dirs% *}"
-	    newdirs=${dirs#$d }
-
-	    #echo "Next1: newdirs: $newdirs, d: $d"
-
-	    if [ "$d" = "$dirs" ]
-	    then
-	    	dirs=""
-	    else
-		dirs=$newdirs
-	    fi
-
-	    #echo "Next2 dirs: $dirs, d: $d"
-	    cd $d
-    esac
+function pp {
+    popd
+    pmt
 }
-
 
 function d {
     # print a menu
     if [ $# -eq 0 ] 
     then
-	i=1
-	for dir in $PWD $dirs
-	do
-	    echo " $i) $dir"
-	    i=$[$i + 1]
-	done
-	echo -n "Select Directory: "
-	read n
+        # dirs -v -l does most of this except zero-base list
+        echo " 1) $PWD"
+        i=1
+        while [ $i -lt  ${#DIRSTACK[@]} ]
+        do
+                ii=$((i+1))
+                # expand ~ into the full path
+            echo " $ii) ${DIRSTACK[$i]/~/$HOME}"
+            i=$ii
+        done
+            IFS=${OFS}
+        echo -n "Select Directory: "
+        read n
     else
-	n=$1
+        n=$1
     fi
 
-    # go to the new directory
+    # go to the new directory by popping it out of the stack and pushing it
     case ${n:-EMPTY} in
-	EMPTY | 1 | 0) ;;
+	EMPTY | 0 | 1) ;;
 	[0-9]*)
-	    i=2
-	    dest=EMPTY
-	    newdirs="$PWD"
-	    # find the new directory and compute new dir stack
-	    for dir in $dirs
-	    do
-		if [ $i -eq $n ]
-		then
-		    dest=$dir
-		else
-		    newdirs="$newdirs $dir"
-		fi
-
-		i=$[$i + 1]
-	    done
-
-	    case $dest in
-		EMPTY)	echo "Invalid directory choice" ;;
-		*)	cd $dest
-			dirs=$newdirs ;;
-	    esac
+            if [ $n -le ${#DIRSTACK[@]} ]
+            then
+                n=$((n-1))
+                newdir=${DIRSTACK[$n]}
+                # popd (and pushd) print the stack - annoying
+                popd +$n
+                # replace ~ with the directory and quote newdir in case it
+                # contains spaces
+                pushd "${newdir/~/$HOME}"
+                pmt
+            fi
 	    ;;
 
-	*) echo pd $d ;;
+	*) echo "Unknown entry: $n" ;;
     esac
 }
 
-alias	rd='print $dirs:$PWD > $DOT/savedirs/${HOST}'
+#alias	rd='print $dirs:$PWD > $DOT/savedirs/${HOST}'

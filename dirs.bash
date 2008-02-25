@@ -16,7 +16,7 @@ function	cd	{
 
 #alias cd='sd'
 
-alias	bk='sd -'
+alias	bk='cd -'
 function pd {
     pushd "$1"
     pmt

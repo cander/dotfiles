@@ -184,11 +184,11 @@ else
     }
 fi
 
-if [ -r $DOT/setterm.ksh ] ; 
+if [ -r $DOT/setterm.bash ] ; 
 then 
-    . $DOT/setterm.ksh
+    . $DOT/setterm.bash
 else
-    echo "No $DOT/setterm.ksh file!"
+    echo "No $DOT/setterm.bash file!"
     stty -nl erase  kill  intr 
     function pmt { PS1="[${HOST}]${PWD}: "; }
 fi

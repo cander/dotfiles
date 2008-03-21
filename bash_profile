@@ -13,9 +13,7 @@
 #	~/.khistory_HOSTNAME
 #	~/.kdir_HOSTNAME
 
-#DOT=~/dot-files
-### HACK DURING TESTING
-DOT=~/src/dot-files
+DOT=~/dot-files
 cd
 alias whence='type -path'
 alias which='type'

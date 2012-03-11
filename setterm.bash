@@ -71,9 +71,9 @@ function setPS1 {
     fi
 }
 
-if [ "$TERM" = "xterm" -o "$TERM" = "xterm-color" -o "$TERM" = \'xterm\' ]
+if [ "$TERM" = "xterm" -o "$TERM" = "xterm-color" ]
 then
-    TERM=xterm
+    #TERM=xterm
     unset TERMCAP
     if whence resize > /dev/null 2>&1
     then

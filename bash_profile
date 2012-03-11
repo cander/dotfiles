@@ -58,7 +58,10 @@ unset ENV
 
 # HOST is the official name of this host 
 HOST=`hostname`
-HISTFILE=$DOT/histories/$HOST.bash
+# Don't really want history in DOT, which is under hg, and I'm not running
+# NFS now.  Let it default. In the future, if the files are in a
+# directory, make sure the directory exists.
+#HISTFILE=$DOT/histories/$HOST.bash
 # environment setups for vi and my name for mail
 EXINIT="set sw=4 showmatch redraw ai sh=/bin/sh|map!  {}O"
 NAME="Charles Anderson"
@@ -101,7 +104,7 @@ function	hs	{
     read n?"Select Command #: "
     print -n "{$n}k" | cmd
 }
-function	s	{ fc -e - $1=$2 ; }
+#function	s	{ fc -e - $1=$2 ; }
 function	sg	{
     fc -nl -1 -1 | sed -e "s/^[ 	]*//" -e "s^$1^$2^g" | cmd ; }
 #
@@ -228,6 +231,7 @@ alias rm='rm -i'
 alias source='.'
 alias which='type'
 alias vm='vi [Mm]akefile'
+alias be='bundle exec'
 
 
 # directory management commands

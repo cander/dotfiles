@@ -5,6 +5,8 @@ set ai sw=4 showmatch
 set textwidth=74
 " tabstops=4 for java IDEs, expandtabs so we don't insert any tabs
 set ts=4 expandtab
+
+" coding blocks: crtl-b for matched curlies, crtl-e for end block
 map!  {}O
 map!  endO
 " map!  {\em}i 
@@ -16,3 +18,8 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" fix up backspace under tmux
+if &term == "screen" || &term == "screen-256color"
+    set t_kb=
+   fixdel
+endif

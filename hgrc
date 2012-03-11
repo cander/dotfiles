@@ -1,12 +1,13 @@
 [ui]
 username = Charles Anderson<master.sparkle@gmail.com>
-#style = compact
+style = compact
 
 [extensions]
-hgext.convert=
+# hgext.convert =
 hgext.graphlog =
-hgext.mq =
+hgext.mq = 
 #hgk= /Library/Python/2.5/site-packages/hgk.py
+#hggit =
 
 [convert]
 cvsps = builtin
@@ -14,4 +15,3 @@ cvsps = builtin
 [alias]
 slog = log --template '{rev}:{node|short} {desc|firstline}\n'
 clog = log --style compact
-

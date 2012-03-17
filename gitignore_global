@@ -1,0 +1,10 @@
+# Editor droppings
+*.swp
+*.swo
+
+# Compiler products
+*.class
+*.jar
+
+# OS droppings
+.DS_Store*

@@ -18,8 +18,9 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" fix up backspace under tmux
-if &term == "screen" || &term == "screen-256color"
+" fix up backspace under tmux - assume tmux is only 256 color
+" and that regular "screen" is for screen.
+if &term == "screen-256color"
     set t_kb=
    fixdel
 endif

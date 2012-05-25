@@ -6,49 +6,13 @@
 #
 #
 
-HOMECRT=vt100
-WORKCRT=vt100
 
-# set up terminal type and tty options
-
-#
-# Emulate tset command
-#
-if [ -z "$TERM" -o "$TERM" = "unknown" ]
-then
-    if port=`tty`
-    then
-	case $port in
-	    /dev/console )
-		term=vt100 ;;
-	    /dev/tty[pqrt]? | /dev/pt[sy]/* )
-		term=xterm ;;
-	    * )
-		term=$WORKCRT ;;
-	esac
-    else
-	term="unknown"
-    fi
-else
-    # TERM is set - use it
-    term=$TERM
-fi
-
-echonl "TERM = ($term) "  1>&2
-read line
-
-if [ -n "$line" ]
-then
-    term=$line
-fi
-
-export TERM ; TERM=$term
-
+# No longer bother to figure out what type of TERM we're on - modern OSes
+# seem to set TERM correctly
 
 stty -nl tostop kill  erase  intr  
 
 function setPS1 { 
-    # TODO is there a bash way to substring this down?
     # try to remove $HOME as prefix
     pwd="${PWD#~}"
     if [ "$PWD" != "$pwd" ]
@@ -62,6 +26,7 @@ function setPS1 {
             pwd='~'$pwd
         fi
     fi
+
     # truncate pwd down to 32 characters, if needed
     if [ "${pwd:0:32}" == "$pwd" ]
     then
@@ -69,6 +34,9 @@ function setPS1 {
     else
         PS1="[\h: ...${pwd: -32:32}] " 
     fi
+
+    # are there some standard ways to handle colors in prompts?
+    # see the Ubuntu stock bashrc file
 }
 
 if [ "$TERM" = "xterm" -o "$TERM" = "xterm-color" ]

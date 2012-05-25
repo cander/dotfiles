@@ -5,7 +5,7 @@
 # this script uses some auxilary files if they exist
 #	~/.kmachtype	determine the machine type and set PATH
 #	~/.kdir		directory stack of last session (created in .klogout)
-#	~/.kseterm	set up the terminal type
+#	~/dotfiles/setterm.bash	set up the terminal type
 #	~/.k_HOSTNAME	machine specific items for HOSTNAME
 #	~/.klogout	sourced on logout or exit.
 #
@@ -13,7 +13,7 @@
 #	~/.khistory_HOSTNAME
 #	~/.kdir_HOSTNAME
 
-DOT=~/dot-files
+DOT=$HOME/dotfiles
 cd
 alias whence='type -path'
 alias which='type'

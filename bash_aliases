@@ -112,5 +112,9 @@ function d {
 
 #alias	rd='print $dirs:$PWD > $DOT/savedirs/${HOST}'
 
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+# Ruby/Rails things:
 # This loads RVM into a shell session
 [[ -s "/home/canderson/.rvm/scripts/rvm" ]] && source "/home/canderson/.rvm/scripts/rvm"  
+alias be='bundle exec'

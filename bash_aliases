@@ -1,5 +1,8 @@
-
-
+#
+# This is a subset of the environment that gets loaded on Ubuntu w/o
+# replacing the default Ubuntu setup.  Someday this needs to merge back
+# into the core profile
+#
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -116,5 +119,5 @@ function d {
 
 # Ruby/Rails things:
 # This loads RVM into a shell session
-[[ -s "/home/canderson/.rvm/scripts/rvm" ]] && source "/home/canderson/.rvm/scripts/rvm"  
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 alias be='bundle exec'

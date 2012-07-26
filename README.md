@@ -17,3 +17,8 @@ fiddling, but not much real work.
 * Massive re-org and clean-up of the bash initialization.
 * Fix new-ish(?) bug(s) in the directory stack
 * Write a real README
+
+# Partial Credits
+Here's a list of some of the sources I may have cribbed from / been
+inspired by:
+* https://github.com/skwp/dotfiles - installer Rakefile

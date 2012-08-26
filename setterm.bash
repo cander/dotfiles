@@ -12,6 +12,30 @@
 
 stty -nl tostop kill  erase  intr  
 
+function short_pwd { 
+    # try to remove $HOME as prefix
+    pwd="${PWD#~}"
+    if [ "$PWD" != "$pwd" ]
+    then
+        # we're under or in $HOME - collapse, unless its only $HOME
+        if [ "$PWD" == "$HOME" ]
+        then
+            pwd="$HOME"
+        else
+            # put ~ literal back in
+            pwd='~'$pwd
+        fi
+    fi
+
+    # truncate pwd down to 32 characters, if needed
+    if [ "${pwd:0:32}" == "$pwd" ]
+    then
+        echo ${pwd}
+    else
+        echo "...${pwd: -32:32}"
+    fi
+}
+
 function setPS1 { 
     # try to remove $HOME as prefix
     pwd="${PWD#~}"

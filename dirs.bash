@@ -6,12 +6,10 @@
 #       pp ----- pop directory off the stack and switch to it
 #	d ------ select a directory from the directory stack
 #	rd ------ remember directory stack
-#	pmt ---- updates the prompt (defined in ".kseterm")
 #
 
 function	cd	{ 
     command cd $@ > /dev/null
-    pmt
 }
 
 #alias cd='sd'
@@ -19,11 +17,9 @@ function	cd	{
 alias	bk='cd -'
 function pd {
     pushd "$1"
-    pmt
 }
 function pp {
     popd
-    pmt
 }
 
 function d {
@@ -60,7 +56,6 @@ function d {
                 # replace ~ with the directory and quote newdir in case it
                 # contains spaces
                 pushd "${newdir/~/$HOME}"
-                pmt
             fi
 	    ;;
 

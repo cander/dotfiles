@@ -1,17 +1,13 @@
 #
 # set terminal dependent things for the profile script
-#   prompt
-#   TERMCAP
 #
-#
-#
-
 
 # No longer bother to figure out what type of TERM we're on - modern OSes
 # seem to set TERM correctly
 
 stty -nl tostop kill  erase  intr  
 
+# map current directory into preferred form for PS1
 function short_pwd { 
     # try to remove $HOME as prefix
     pwd="${PWD#~}"
@@ -36,55 +32,24 @@ function short_pwd {
     fi
 }
 
-function setPS1 { 
-    # try to remove $HOME as prefix
-    pwd="${PWD#~}"
-    if [ "$PWD" != "$pwd" ]
-    then
-        # we're under or in $HOME - collapse, unless its only $HOME
-        if [ "$PWD" == "$HOME" ]
-        then
-            pwd="$HOME"
-        else
-            # put ~ literal back in
-            pwd='~'$pwd
-        fi
-    fi
+# set a fancy color prompt if possible
+case "$TERM" in
+    xterm-color)
+        PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]$(short_pwd)\[\033[00m\] '
+    ;;
+    screen*)
+        # someday use unique color scheme for screen
+        PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]$(short_pwd)\[\033[00m\] '
+    ;;
+    *)
+        export PS1='\u@\h: $(short_pwd) '
+    ;;
+esac
 
-    # truncate pwd down to 32 characters, if needed
-    if [ "${pwd:0:32}" == "$pwd" ]
-    then
-        PS1="[\h:${pwd}] " 
-    else
-        PS1="[\h: ...${pwd: -32:32}] " 
-    fi
+# TODO - set color flag and alias grep, etc.
+#        removed code to set title in xterm-like termals via pmt function
 
-    # are there some standard ways to handle colors in prompts?
-    # see the Ubuntu stock bashrc file
-}
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-if [ "$TERM" = "xterm" -o "$TERM" = "xterm-color" ]
-then
-    #TERM=xterm
-    unset TERMCAP
-    if whence resize > /dev/null 2>&1
-    then
-        eval `resize`
-        export TERMCAP
-    else
-        echo "Cannot find resize.  Setting TERM to xterms (80x24)"
-        export TERM=xterms
-    fi
-
-    function xname { echo "]0;$1"; }
-    # xname $HOST
-    function xtitle { echo -n "]2;$1"; }
-    function pmt {
-        setPS1
-        xtitle "$HOST:$PWD"
-    }
-else
-    function pmt {
-        setPS1
-    }
-fi

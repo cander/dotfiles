@@ -194,8 +194,6 @@ else
     function pmt { PS1="[${HOST}]${PWD}: "; }
 fi
 
-pmt
-
 #
 # set up for logout
 #

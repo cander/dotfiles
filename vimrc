@@ -37,7 +37,8 @@ endif
 set ruler
 
 " Make space into page-down - more useful, more often
-nnoremap <SPACE> <PAGEDOWN>
+" Drives me crazy!
+"-- nnoremap <SPACE> <PAGEDOWN>
 
 "====[ Use persistent undo ]=================
 
@@ -51,4 +52,3 @@ if has('persistent_undo')
     " Actually switch on persistent undo
     set undofile
 endif
-

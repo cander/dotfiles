@@ -65,19 +65,13 @@ HOST=`hostname`
 # environment setups for vi and my name for mail
 EXINIT="set sw=4 showmatch redraw ai sh=/bin/sh|map!  {}O"
 NAME="Charles Anderson"
-#MAIL=/usr/spool/mail/$USER
-MAILCHECK=60
 #
 #  set job control commands
 #	j ------ list current jobs in long format
 #       f ------ put named job into foreground
-#	fm ----- foreground previous job
-#	fv ----- foreground "vi" job
 #	fj ----- foreground selected job (prompts with list of jobs)
 alias	j='jobs -l'
 function	f	{ fg %"$*"; }
-alias	fm='fg %-'
-function	fv	{ fg %"vi $*"; }
 function	fj {
     jobs -l
     print -n "Select Job #: "
@@ -210,7 +204,6 @@ umask 2
 alias a='alias'
 alias clr='clear'
 alias cp='cp -i'
-alias e='vi'
 alias f1='fg %1'
 alias f2='fg %2'
 alias f3='fg %3'
@@ -222,7 +215,6 @@ alias lwd='ls -t -l'
 # lhd should be a function to take args
 alias lhd='ls -t -l | head'
 alias me='pd $HOME'
-alias msgs='msgs -p'
 alias mv='mv -i'
 alias ping=`whence ping`
 alias rm='rm -i'
@@ -235,6 +227,19 @@ alias be='bundle exec'
 # directory management commands
 source "$DOT/dirs.bash"
 
-test -r /sw/bin/init.sh && . /sw/bin/init.sh
+# look for optional packages that have their own configuration
+test -r /sw/bin/init.sh && source /sw/bin/init.sh       # fink
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+[[ -s /usr/local/bin/virtualenvwrapper_bashrc ]] && source /usr/local/bin/virtualenvwrapper_bashrc
+
+[[ -x /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home)
+
+# things in /usr/local to add to PATH
+[[ -d /usr/local/git/bin ]] && PATH="$PATH:/usr/local/git/bin"
+[[ -d /usr/local/mysql/bin ]] && PATH="$PATH:/usr/local/mysql/bin"
+
+export PATH

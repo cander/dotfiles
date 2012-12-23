@@ -58,13 +58,14 @@ task :default => 'new_install'
 desc "New installer script."
 task :new_install do
   src_dir = ENV['PWD']
-  dest_dir = '/tmp/home'
-  src_files = []
+  dest_dir = ENV['HOME']
+  abort "Destination #{dest_dir} does not exist" unless File.directory?(dest_dir)
+  src_files = [ 'bash_profile', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
+                'gitignore_global' ]
   src_files += Dir.glob('{vimrc}')
-  src_files << 'bash_profile'
 
   src_files.each do |src_file|
-    install("#{src_dir}/#{src_file}", dest_dir)
+    install_link("#{src_dir}/#{src_file}", dest_dir)
   end
 end
 
@@ -80,24 +81,27 @@ def cmd(cmd_line)
     `#{cmd_line}`
 end
 
-def install(src_file, dest_dir)
+def install_link(src_file, dest_dir)
   dest_file = "#{dest_dir}/.#{File.basename(src_file)}"
   puts "install #{src_file} --> #{dest_file}"
+  unless File.exists?(src_file)
+    puts "** #{src_file} does not exist - skipping"
+    return
+  end
+
   if File.exists?(dest_file)
     if File.symlink?(dest_file)
-      # puts "Existing symlink: #{File.readlink(dest_file)}"
       if File.readlink(dest_file) == src_file
-        puts ">> #{dest_file} already installed correctly"
         return
       end
     end
 
     orig_file = "#{dest_file}.orig"
-    puts ">> saving #{dest_file} as #{orig_file}"
+    puts "  saving #{dest_file} as #{orig_file}"
     File.unlink(orig_file) if File.exists?(orig_file)
     File.rename(dest_file, orig_file)
   end
 
-  abort "#{dest_file} should not exist" if File.exists?(dest_file)
+  abort "** #{dest_file} should not exist" if File.exists?(dest_file)
   File.symlink(src_file, dest_file)
 end

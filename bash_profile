@@ -20,7 +20,7 @@ alias which='type'
 alias print='echo'
 
 GENERIC_PATH=.:~/shbin:/usr/local/bin:/usr/local/sbin:/usr/local/shbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin
-GENERIC_MANPATH=/usr/man:/usr/local/man:/usr/share/man:/usr/X11R6/man
+GENERIC_MANPATH=/usr/man:/usr/local/man:/usr/share/man:/usr/local/share/man
 
 # Figure out what kind of machine we're on
 if [ -r $DOT/machtype.bash ] 
@@ -34,10 +34,6 @@ fi
 if [ -r $DOT/site.sh ]
 then
     . $DOT/site.sh
-else
-    echo "$DOT/site.sh does not exist!  Defaulting PATH."
-    PATH=~/shbin:/usr/local/bin:/bin:/usr/bin:/usr/local:/usr/games:/usr/etc:/usr/ucb
-    PATH=$MACH_PATH_HEAD:$GENERIC_PATH:$MACH_PATH_TAIL
 fi
 
 

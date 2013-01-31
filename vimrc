@@ -31,6 +31,9 @@ if &term == "screen-256color"
    fixdel
 endif
 
+" pathogen loads plugins from ~/.vim/bundle
+execute pathogen#infect()
+
 " -------- Stuff from Daimin Conway --------
 
 " always display position in file, not just via ctrl-G

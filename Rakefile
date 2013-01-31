@@ -11,7 +11,7 @@ task :install do
   # linkables += Dir.glob('ruby/*') if want_to_install?('ruby (gems)')
   # linkables += Dir.glob('{vim,vimrc}') if want_to_install?('vim')
   # linkables += Dir.glob('zsh/zshrc') if want_to_install?('zsh')
-  linkables += Dir.glob('{vimrc}') if want_to_install?('vim')
+  # linkables += Dir.glob('{vimrc}') if want_to_install?('vim')
 
   skip_all = false
   overwrite_all = false
@@ -61,8 +61,7 @@ task :new_install do
   dest_dir = ENV['HOME']
   abort "Destination #{dest_dir} does not exist" unless File.directory?(dest_dir)
   src_files = [ 'bash_profile', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
-                'gitignore_global' ]
-  src_files += Dir.glob('{vimrc}')
+                'gitignore_global', 'vimrc', 'vim' ]
 
   src_files.each do |src_file|
     install_link("#{src_dir}/#{src_file}", dest_dir)

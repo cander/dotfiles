@@ -1,3 +1,12 @@
 [submodule "vim/bundle/tpope-vim-surround"]
 	path = vim/bundle/tpope-vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/tpope-vim-repeat"]
+	path = vim/bundle/tpope-vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/bundle/vim-scripts-matchit.zip"]
+	path = vim/bundle/vim-scripts-matchit.zip
+	url = https://github.com/vim-scripts/matchit.zip.git
+[submodule "vim/bundle/scrooloose-nerdtree"]
+	path = vim/bundle/scrooloose-nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

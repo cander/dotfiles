@@ -1,9 +1,62 @@
-# Originally from https://github.com/skwp/dotfiles
 require 'rake'
 
+task :default => 'install'
+
+desc "Install dot files under HOME"
+task :install => :submodules do
+  src_dir = ENV['PWD']
+  dest_dir = ENV['HOME']
+  abort "Destination #{dest_dir} does not exist" unless File.directory?(dest_dir)
+  src_files = [ 'bash_profile', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
+                'gitignore_global', 'vimrc', 'vim' ]
+
+  src_files.each do |src_file|
+    install_link("#{src_dir}/#{src_file}", dest_dir)
+  end
+end
+
+desc "Init and update submodules."
+task :submodules do
+  sh('git submodule update --init')
+end
+
+private
+
+def install_link(src_file, dest_dir)
+  dest_file = "#{dest_dir}/.#{File.basename(src_file)}"
+  puts "install #{src_file} --> #{dest_file}"
+  unless File.exists?(src_file)
+    puts "** #{src_file} does not exist - skipping"
+    return
+  end
+
+  if File.exists?(dest_file)
+    if File.symlink?(dest_file)
+      if File.readlink(dest_file) == src_file
+        return
+      end
+    end
+
+    orig_file = "#{dest_file}.orig"
+    puts "  saving #{dest_file} as #{orig_file}"
+    File.unlink(orig_file) if File.exists?(orig_file)
+    File.rename(dest_file, orig_file)
+  end
+
+  abort "** #{dest_file} should not exist" if File.exists?(dest_file)
+  File.symlink(src_file, dest_file)
+end
+
+# --- original stuff from https://github.com/skwp/dotfiles
+
+
+def cmd(cmd_line)
+    puts " >> #{cmd_line}"
+    `#{cmd_line}`
+end
 desc "Hook our dotfiles into system-standard positions."
 # task :install => :submodules do
-task :install do
+task :old_install do
   # this has all the linkables from this directory.
   linkables = []
   # linkables += Dir.glob('git/*') if want_to_install?('git')
@@ -48,59 +101,8 @@ task :install do
   puts "Done - enjoy."
 end
 
-desc "Init and update submodules."
-task :submodules do
-  sh('git submodule update --init')
-end
-
-task :default => 'new_install'
-
-desc "New installer script."
-task :new_install do
-  src_dir = ENV['PWD']
-  dest_dir = ENV['HOME']
-  abort "Destination #{dest_dir} does not exist" unless File.directory?(dest_dir)
-  src_files = [ 'bash_profile', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
-                'gitignore_global', 'vimrc', 'vim' ]
-
-  src_files.each do |src_file|
-    install_link("#{src_dir}/#{src_file}", dest_dir)
-  end
-end
-
-private
-
 def want_to_install? (section)
   puts "Would you like to install configuration files for: #{section}? [y]es, [n]o"
   STDIN.gets.chomp == 'y'
 end
 
-def cmd(cmd_line)
-    puts " >> #{cmd_line}"
-    `#{cmd_line}`
-end
-
-def install_link(src_file, dest_dir)
-  dest_file = "#{dest_dir}/.#{File.basename(src_file)}"
-  puts "install #{src_file} --> #{dest_file}"
-  unless File.exists?(src_file)
-    puts "** #{src_file} does not exist - skipping"
-    return
-  end
-
-  if File.exists?(dest_file)
-    if File.symlink?(dest_file)
-      if File.readlink(dest_file) == src_file
-        return
-      end
-    end
-
-    orig_file = "#{dest_file}.orig"
-    puts "  saving #{dest_file} as #{orig_file}"
-    File.unlink(orig_file) if File.exists?(orig_file)
-    File.rename(dest_file, orig_file)
-  end
-
-  abort "** #{dest_file} should not exist" if File.exists?(dest_file)
-  File.symlink(src_file, dest_file)
-end

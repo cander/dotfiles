@@ -1,1 +1,5 @@
 site.sh
+*.swp
+
+# expanded from ERB file(s)
+gitconfig

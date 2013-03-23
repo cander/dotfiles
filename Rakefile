@@ -13,6 +13,24 @@ task :install => :submodules do
   src_files.each do |src_file|
     install_link("#{src_dir}/#{src_file}", dest_dir)
   end
+  install_gitconfig(src_dir, dest_dir)
+end
+
+def install_gitconfig(src_dir, dest_dir)
+  name = 'Charles Anderson'
+  email = 'master.sparkle@gmail.com'
+  fname = "#{src_dir}/gitconfig"
+  erb_fname = "#{fname}.erb"
+  if File.exist?(fname) && File.mtime(fname) > File.mtime(erb_fname)
+    puts "expanded file #{fname} is newer than #{erb_fname}"
+  else
+    File.open(fname, 'w') do |outfile| 
+      outfile.write ERB.new(File.read(erb_fname)).result(binding)
+    end
+    puts "created expanded file #{fname}"
+  end
+
+  install_link(fname, dest_dir)
 end
 
 desc "Init and update submodules."

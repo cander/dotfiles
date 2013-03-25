@@ -1,4 +1,5 @@
 require 'rake'
+require 'erb'
 
 task :default => 'install'
 

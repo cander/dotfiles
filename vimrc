@@ -31,6 +31,9 @@ if &term == "screen-256color"
    fixdel
 endif
 
+" include colons in keywords so tags in puppet work
+set iskeyword=-,:,@,48-57,_,192-255
+
 " pathogen loads plugins from ~/.vim/bundle
 execute pathogen#infect()
 

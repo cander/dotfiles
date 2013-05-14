@@ -9,7 +9,7 @@ task :install => :submodules do
   dest_dir = ENV['HOME']
   abort "Destination #{dest_dir} does not exist" unless File.directory?(dest_dir)
   src_files = [ 'bash_profile', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
-                'gitignore_global', 'vimrc', 'vim' ]
+                'gitignore_global', 'vimrc', 'vim', 'ctags' ]
 
   src_files.each do |src_file|
     install_link("#{src_dir}/#{src_file}", dest_dir)

@@ -223,6 +223,11 @@ alias be='bundle exec'
 # directory management commands
 source "$DOT/dirs.bash"
 
+# git stuff
+[[ -s "$DOT/git-completion.bash ]] && source "$HOME/git-completion.bash"
+alias gb='git branch'
+alias gpf='git pull --ff-only'
+
 # look for optional packages that have their own configuration
 test -r /sw/bin/init.sh && source /sw/bin/init.sh       # fink
 

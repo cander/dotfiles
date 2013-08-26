@@ -224,7 +224,7 @@ alias be='bundle exec'
 source "$DOT/dirs.bash"
 
 # git stuff
-[[ -s "$DOT/git-completion.bash ]] && source "$HOME/git-completion.bash"
+[[ -s "$DOT/git-completion.bash" ]] && source "$DOT/git-completion.bash"
 alias gb='git branch'
 alias gpf='git pull --ff-only'
 

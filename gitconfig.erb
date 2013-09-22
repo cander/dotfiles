@@ -3,8 +3,29 @@
 	email = <%= email %>
 [color]
      ui = auto
-[merge]
-    summary = true
-    tool = opendiff
 [alias]
     glog = log --pretty=format:'%Cgreen%h%Creset : %s %Cgreen(%an) %Cred%ad%Creset' --graph --date=short
+
+<% if File.executable? '/usr/local/bin/diffmerge' %>
+[merge]
+    summary = true
+	tool = diffmerge
+[diff]
+	tool = diffmerge
+[difftool "diffmerge"]
+	cmd = /usr/local/bin/diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	trustExitCode = true
+	cmd = /usr/local/bin/diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+<% end %>
+
+<% if File.directory? '/opt/boxen' %>
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[core]
+excludesfile = /opt/boxen/config/git/gitignore
+
+[hub]
+protocol = https
+<% end %>

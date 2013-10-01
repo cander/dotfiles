@@ -9,7 +9,7 @@
 #
 
 function	cd	{ 
-    command cd $@ > /dev/null
+    command cd "$@" > /dev/null
 }
 
 #alias cd='sd'

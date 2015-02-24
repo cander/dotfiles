@@ -226,7 +226,17 @@ source "$DOT/dirs.bash"
 # git stuff
 [[ -s "$DOT/git-completion.bash" ]] && source "$DOT/git-completion.bash"
 alias gb='git branch'
-alias gpf='git pull --ff-only'
+function	gpf {
+    # this could look for remote and branch, I only do this for origin and
+    # the current branch
+    if branch=$(git symbolic-ref --short -q HEAD)
+    then
+        echo "git pull --ff-only origin $branch"
+        git pull --ff-only origin $branch
+    else
+        echo "not on any branch - can't fast-forward"
+    fi
+}
 
 # look for optional packages that have their own configuration
 test -r /sw/bin/init.sh && source /sw/bin/init.sh       # fink

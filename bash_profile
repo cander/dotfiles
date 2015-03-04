@@ -227,10 +227,12 @@ source "$DOT/dirs.bash"
 [[ -s "$DOT/git-completion.bash" ]] && source "$DOT/git-completion.bash"
 alias gb='git branch'
 function	gpf {
-    # this could look for remote and branch, I only do this for origin and
-    # the current branch
-    if branch=$(git symbolic-ref --short -q HEAD)
+    # this could look for remote and branch parameters, I only do this
+    # for origin and the current branch
+    # in git 1.8, don't need awk: git symbolic-ref --short -q HEAD
+    if branch=$(git symbolic-ref -q HEAD)
     then
+        branch=$(echo $branch | awk -F / '{print $NF}')
         echo "git pull --ff-only origin $branch"
         git pull --ff-only origin $branch
     else

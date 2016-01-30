@@ -218,6 +218,7 @@ alias source='.'
 alias which='type'
 alias vm='vi [Mm]akefile'
 alias be='bundle exec'
+alias rehash='hash -r'
 
 
 # directory management commands

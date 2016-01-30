@@ -242,7 +242,7 @@ function	gpf {
 }
 
 # look for optional packages that have their own configuration
-test -r /sw/bin/init.sh && source /sw/bin/init.sh       # fink
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 

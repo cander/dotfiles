@@ -3,7 +3,7 @@
 #
 
 # this script uses some auxilary files if they exist
-#	~/.kmachtype	determine the machine type and set PATH
+#	dotfiles/machtype.bash	determine the machine type and set PATH
 #	~/.kdir		directory stack of last session (created in .klogout)
 #	~/dotfiles/setterm.bash	set up the terminal type
 #	~/.k_HOSTNAME	machine specific items for HOSTNAME

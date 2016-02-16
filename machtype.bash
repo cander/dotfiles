@@ -12,13 +12,9 @@ case $UNAME in
     Darwin)
         # add some mechanism to search /Applications and /Developer
         PATH=$GENERIC_PATH:/sw/bin:/sw/sbin
-        MANPATH=$GENERIC_MANPATH:/sw/share/man:/sw/lib/perl5/5.8.6/man
+        MANPATH=$GENERIC_MANPATH
         export CLICOLOR=1   # ls colors on mac
-        # Fink stuff
-        if [ -r /sw/bin/init.sh ] 
-        then 
-            . /sw/bin/init.sh 
-        fi
+        export LSCOLORS='fxCxgxdxbxegedabagacad'
         ;;
     SunOS)
         # from collab root env

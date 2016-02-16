@@ -46,10 +46,10 @@ case "$TERM" in
     ;;
 esac
 
+# NB: machtype.bash sets up ls colors based on machine type
+
 # TODO - set color flag and alias grep, etc.
 #        removed code to set title in xterm-like termals via pmt function
-
-export CLICOLOR=1   # ls colors on mac
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

@@ -31,11 +31,6 @@ else
     PATH=$GENERIC_PATH
 fi
 
-if [ -r $DOT/site.sh ]
-then
-    . $DOT/site.sh
-fi
-
 
 # set appropriate shell variables
 loggedin=${loggedin:=0}
@@ -252,10 +247,17 @@ function	gpf {
 
 [[ -s /usr/local/bin/virtualenvwrapper_bashrc ]] && source /usr/local/bin/virtualenvwrapper_bashrc
 
-[[ -x /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home)
+[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
+
+[ -x /usr/libexec/java_home ] && /usr/libexec/java_home > /dev/null 2>&1 && export JAVA_HOME=$(/usr/libexec/java_home)
 
 # things in /usr/local to add to PATH
 [[ -d /usr/local/git/bin ]] && PATH="$PATH:/usr/local/git/bin"
 [[ -d /usr/local/mysql/bin ]] && PATH="$PATH:/usr/local/mysql/bin"
+
+if [ -r $DOT/site.sh ]
+then
+    . $DOT/site.sh
+fi
 
 export PATH

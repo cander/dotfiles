@@ -224,6 +224,7 @@ source "$DOT/dirs.bash"
 alias gb='git branch'
 alias gs='git status'
 alias gfo='git fetch origin --no-tags'
+alias gfu='git fetch upstream --no-tags'
 function	gpf {
     # this could look for remote and branch parameters, I only do this
     # for origin and the current branch

@@ -1,7 +1,7 @@
 # WTF?
 
 These are my dot/config files.  I put them under Mercurial years ago, but
-never use hg for a distribution scheme because at the time I was working
+never used hg for a distribution scheme because at the time I was working
 at a Subversion shop.  In part because of that and part because of
 laziness, these files have been rotting.  No longer.  I'll start hacking
 on them, cleaning them, adding to them, and fixing various bugs.  

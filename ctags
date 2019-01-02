@@ -5,3 +5,12 @@
 --regex-puppet=/^node[ \t]*([a-zA-Z0-9_\-]+)[ \t]*/\1/n,node/
 --regex-puppet=/^node[ \t]*['"]([a-zA-Z0-9_\-]+)['"][ \t]*\{/\1/n,node/
 --regex-puppet=/^define[ \t]*([:a-zA-Z0-9_\-]+)[ \t]*/\1/d,definition/
+
+--exclude=vendor
+--exclude=build
+--exclude=dist
+--exclude=*.bundle.*
+--exclude=\*.swp
+--exclude=\*.bak
+--exclude=.git*
+--exclude=pkg

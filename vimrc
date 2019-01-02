@@ -58,3 +58,7 @@ if has('persistent_undo')
     " Actually switch on persistent undo
     set undofile
 endif
+
+" ctrl-P - https://github.com/ctrlpvim/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'

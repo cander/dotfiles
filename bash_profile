@@ -222,6 +222,7 @@ source "$DOT/dirs.bash"
 # git stuff
 [[ -s "$DOT/git-completion.bash" ]] && source "$DOT/git-completion.bash"
 alias gb='git branch'
+alias gd='git diff'
 alias gs='git status'
 alias gfo='git fetch origin --no-tags'
 alias gfu='git fetch upstream --no-tags'

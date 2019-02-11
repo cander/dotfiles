@@ -32,6 +32,7 @@ if &term == "screen-256color"
 endif
 
 " include colons in keywords so tags in puppet work
+" TODO - conditional on .pp files
 set iskeyword=-,:,@,48-57,_,192-255
 
 " pathogen loads plugins from ~/.vim/bundle
@@ -62,3 +63,6 @@ endif
 " ctrl-P - https://github.com/ctrlpvim/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" NERDTree - https://github.com/scrooloose/nerdtree
+map <C-n> :NERDTreeToggle<CR>

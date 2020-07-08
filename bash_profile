@@ -261,6 +261,7 @@ fi
 [ -x /usr/libexec/java_home ] && /usr/libexec/java_home > /dev/null 2>&1 && export JAVA_HOME=$(/usr/libexec/java_home)
 
 # things in /usr/local to add to PATH
+[[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
 [[ -d /usr/local/git/bin ]] && PATH="$PATH:/usr/local/git/bin"
 [[ -d /usr/local/mysql/bin ]] && PATH="$PATH:/usr/local/mysql/bin"
 

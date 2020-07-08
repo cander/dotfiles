@@ -243,7 +243,14 @@ function	gpf {
 # look for optional packages that have their own configuration
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# Prefer rbenv over rvm
+if [ -d "$HOME/.rbenv" ] ; then
+    eval "$(rbenv init -)"
+else
+    if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+        source "$HOME/.rvm/scripts/rvm"
+    fi
+fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 

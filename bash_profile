@@ -260,6 +260,8 @@ fi
 
 [ -x /usr/libexec/java_home ] && /usr/libexec/java_home > /dev/null 2>&1 && export JAVA_HOME=$(/usr/libexec/java_home)
 
+[[ -d ~/go/bin ]] && PATH="$PATH:~/go/bin"
+
 # things in /usr/local to add to PATH
 [[ -d /usr/local/go/bin ]] && PATH="$PATH:/usr/local/go/bin"
 [[ -d /usr/local/git/bin ]] && PATH="$PATH:/usr/local/git/bin"

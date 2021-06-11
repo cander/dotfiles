@@ -240,6 +240,10 @@ function	gpf {
     fi
 }
 
+# docker stuff
+alias dang-ls='docker images --filter "dangling=true"'
+alias dang-rm='docker images --filter "dangling=true" | xargs docker rmi'
+
 # look for optional packages that have their own configuration
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 

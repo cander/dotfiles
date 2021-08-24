@@ -11,8 +11,20 @@ UNAME=`uname`
 case $UNAME in
     Darwin)
         # add some mechanism to search /Applications and /Developer
-        PATH=$GENERIC_PATH:/sw/bin:/sw/sbin
+        PATH=$GENERIC_PATH
         MANPATH=$GENERIC_MANPATH
+	if [ -d /opt/homebrew/bin ] ; then
+	    # homebrew on ARM installs in a different directory, and I've had some build problems
+	    PATH=$PATH:/opt/homebrew/bin
+	    MANPATH=$MANPATH:/opt/homebrew/share/man/
+	    # perhaps this should use brew --prefix
+	    if [ -d /opt/homebrew/opt/libffi ] ; then
+	      export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+	      export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+	      export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+
+	    fi
+	fi
         export CLICOLOR=1   # ls colors on mac
         export LSCOLORS='fxCxgxdxbxegedabagacad'
         ;;

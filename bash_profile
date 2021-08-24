@@ -201,10 +201,6 @@ alias f3='fg %3'
 alias f4='fg %4'
 alias f5='fg %5'
 alias logout=". ~/.klogout ; exit"
-alias lrd='ls -t -l -u'
-alias lwd='ls -t -l'
-# lhd should be a function to take args
-alias lhd='ls -t -l | head'
 alias me='pd $HOME'
 alias mv='mv -i'
 alias ping=`whence ping`
@@ -215,6 +211,20 @@ alias vm='vi [Mm]akefile'
 alias be='bundle exec'
 alias rehash='hash -r'
 
+# forms of ls
+if type exa > /dev/null ; then
+    alias ll='exa --long --bytes --git'
+    alias lwd='ll --sort=modified --reverse'
+    alias lrd='ll --accessed --sort=accessed --reverse'
+    # lhd should be a function to take args
+    alias lhd='lwd --color=always | head'
+else
+    alais ll='ls -l'
+    alias lwd='ls -t -l'
+    alias lrd='ls -t -l -u'
+    # lhd should be a function to take args
+    alias lhd='ls -t -l | head'
+fi
 
 # directory management commands
 source "$DOT/dirs.bash"

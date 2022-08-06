@@ -12,6 +12,26 @@ from a setup I used for a bootleg version of ksh (before there was any
 open-source version).  Then, I migrated to bash.  There's been some
 fiddling, but not much real work.
 
+## Vim Module Voodoo
+
+In its current form, I'm using git submodules for the vim plugins. (Should
+move to the built-in plug-in manager now that most/all of my machines are on
+vim 8. These are basic notes for me for future reference (after NerdTree
+broke after updating MacOS)
+
+To update a submodule:
+```
+git submodule update --remote vim/bundle/scrooloose-nerdtree
+git commit       # trivial one-file change
+git push origin master
+```
+
+To pull those changes down on another machine:
+```
+git pull origin master
+git submodule update
+```
+
 # TODO
 * Write an installer
 * Massive re-org and clean-up of the bash initialization.

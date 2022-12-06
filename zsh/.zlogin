@@ -46,11 +46,18 @@ else
     alias lhd='ls -t -l | head'
 fi
 
-# TODO: directory management commands
-# source "$DOT/dirs.bash"
+# fancy directory stack
+source "$ZDOTDIR/dirs.zsh"
+
+# fancy prompt
+if starship --version > /dev/null 2>&1 ; then
+    export STARSHIP_CONFIG=$DOT/starship.toml
+    eval "$(starship init zsh)"
+fi
 
 ### git stuff
 # TODO: [[ -s "$ZDOTDIR/git-completion.zsh" ]] && source "$ZDOTDIR/git-completion.zsh"
+alias gb='git add'
 alias gb='git branch'
 alias gd='git diff'
 alias gs='git status'

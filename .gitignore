@@ -1,5 +1,9 @@
 site.sh
 *.swp
 
+zsh/.zsh_sessions
+zsh/.zsh_history
+zsh/site.zsh
+
 # expanded from ERB file(s)
 gitconfig

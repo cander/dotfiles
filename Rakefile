@@ -14,6 +14,7 @@ task :install => :submodules do
   src_files.each do |src_file|
     install_link("#{src_dir}/#{src_file}", dest_dir)
   end
+  install_link("#{src_dir}/zsh/zshenv", dest_dir)
   install_gitconfig(src_dir, dest_dir)
 end
 

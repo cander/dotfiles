@@ -56,8 +56,8 @@ if starship --version > /dev/null 2>&1 ; then
 fi
 
 ### git stuff
-# TODO: [[ -s "$ZDOTDIR/git-completion.zsh" ]] && source "$ZDOTDIR/git-completion.zsh"
-alias gb='git add'
+zstyle ':completion:*:*:git:*' script $DOT/git-completion.bash
+alias ga='git add'
 alias gb='git branch'
 alias gd='git diff'
 alias gs='git status'
@@ -100,3 +100,6 @@ alias rm='rm -i'
 alias U='uptime'
 alias vm='vi [Mm]akefile'
 alias vt='vi -t'
+
+# Specifically only autoload functions in login shells
+autoload -Uz compinit && compinit

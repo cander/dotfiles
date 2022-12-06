@@ -9,7 +9,7 @@ alias  pp='popd'
 
 # select a directory from the printed directory stack
 function d {
-    # print a menu
+    local n
     if [ $# -eq 0 ]
     then
         # print a one-based list of the directory stack
@@ -23,8 +23,8 @@ function d {
     case ${n:-EMPTY} in
 	EMPTY | 0 | 1) ;;   # no-op
 	[0-9]*)
-        pushd .         # pushing . will save cwd and makes index effectively 1-based
-        cd +$n || popd  # if cd fails un-push cwd
+        pushd .         # pushing . will save cwd and makes list effectively 1-based
+        cd +$n || popd  # if cd fails, un-push cwd to restore previous state
         ;;
     esac
 }

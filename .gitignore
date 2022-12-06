@@ -3,6 +3,7 @@ site.sh
 
 zsh/.zsh_sessions
 zsh/.zsh_history
+zsh/.zcompdump
 zsh/site.zsh
 
 # expanded from ERB file(s)

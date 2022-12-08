@@ -8,8 +8,10 @@ set ts=4 expandtab
 
 set sw=4
 " except for Ruby files - should add Rakefile
-" this is kinda lame b/c it sets it for all buffers
+" this is kinda lame b/c it sets it for all buffers - TODO: tune this
 autocmd BufRead *.rb set sw=2
+
+" add configs for Go and Makefiles
 
 " coding blocks: crtl-b for matched curlies, crtl-e for end block
 map!  {}O

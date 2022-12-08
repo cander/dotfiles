@@ -5,11 +5,17 @@
 #
 echo Hello from .zlogin
 
-# TODO: move to .vimrc
-EXINIT="set sw=4 showmatch redraw ai sh=/bin/sh|map!  {}O"
-
-# TODO: make prompt colorful and dynamic
+# default prompt - use Starship later on
 PS1='zsh> '
+
+# history-related settings
+HISTSIZE=10000
+SAVEHIST=2500
+APPEND_HISTORY=1
+# set up ESC-v to edit (multi-line) commands in vim
+export VISUAL=vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 ###  job control commands
 #	j ------ list current jobs in long format

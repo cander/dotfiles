@@ -1,9 +1,9 @@
 # Pick up the other zsh config files from dotfiles/zsh
-export DOT=$HOME/dotfiles   #temporary?
+export DOT=$HOME/dotfiles
 export ZDOTDIR=$DOT/zsh
 
 fpath=($ZDOTDIR $fpath)
 
 # see /etc/zshrc_Apple_Terminal for details
-echo Disabling saved sessions for Apple Terminal
+# Disabling saved sessions for Apple Terminal
 SHELL_SESSIONS_DISABLE=1

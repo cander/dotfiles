@@ -1,7 +1,6 @@
 #
 # This gets read second after zshenv for most shells
 #
-echo Hello from .zprofile
 
 GENERIC_PATH=.:~/shbin:/usr/local/bin:/usr/local/sbin:/usr/local/shbin:/bin:/sbin:/usr/bin:/usr/sbin
 GENERIC_MANPATH=/usr/man:/usr/local/man:/usr/share/man:/usr/local/share/man

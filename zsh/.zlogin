@@ -3,8 +3,6 @@
 # Let's put stuff in here that's only used by human/login shells,
 # which is most of my stuff
 #
-echo Hello from .zlogin
-
 # default prompt - use Starship later on
 PS1='zsh> '
 
@@ -15,12 +13,14 @@ APPEND_HISTORY=1
 # set up ESC-v to edit (multi-line) commands in vim
 export VISUAL=vim
 autoload edit-command-line; zle -N edit-command-line
+bindkey -v
 bindkey -M vicmd v edit-command-line
 
 ###  job control commands
 #	j ------ list current jobs in long format
 #       f ------ put named job into foreground
 #	fj ----- foreground selected job (prompts with list of jobs)
+# BUG: want jobs list to include the working directory
 alias	j='jobs -l'
 function	f	{ fg %"$*"; }
 function	fj {

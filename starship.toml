@@ -853,7 +853,7 @@ format = '[as $symbol]($style)'
 symbol = '🧙 '
 style = 'bold blue'
 allow_windows = false
-disabled = true
+disabled = false
 
 [swift]
 format = 'via [$symbol($version )]($style)'

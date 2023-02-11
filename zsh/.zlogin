@@ -14,6 +14,7 @@ APPEND_HISTORY=1
 export VISUAL=vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey -v
+export KEYTIMEOUT=1
 bindkey -M vicmd v edit-command-line
 
 ###  job control commands
@@ -102,6 +103,7 @@ alias ge='env | grep -i'
 alias mv='mv -i'
 alias m='more'
 alias ping=`whence ping`
+alias p8='ping 8.8.8.8'
 alias rm='rm -i'
 alias U='uptime'
 alias vm='vi [Mm]akefile'

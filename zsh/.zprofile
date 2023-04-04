@@ -14,7 +14,7 @@ else
     PATH=$GENERIC_PATH
 fi
 
-SHELL=`whence bash`
+SHELL=`whence zsh`
 HOST=`hostname`
 
 # Set JAVA_HOME on a Mac if Java is installed

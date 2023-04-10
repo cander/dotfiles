@@ -3,13 +3,13 @@ require 'erb'
 
 task :default => 'install'
 
-desc "Install dot files under HOME"
+desc "Install dot files under #{ENV['HOME']}"
 task :install => :submodules do
   src_dir = ENV['PWD']
   dest_dir = ENV['HOME']
   abort "Destination #{dest_dir} does not exist" unless File.directory?(dest_dir)
-  src_files = [ 'bash_profile', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
-                'gitignore_global', 'vimrc', 'vim', 'ctags' ]
+  src_files = [ 'bash_profile', 'gemrc', 'hgrc', 'inputrc', 'screenrc', 'tmux.conf',
+                'vimrc', 'vim', 'ctags' ]
 
   src_files.each do |src_file|
     install_link("#{src_dir}/#{src_file}", dest_dir)
@@ -20,7 +20,8 @@ end
 
 def install_gitconfig(src_dir, dest_dir)
   name = 'Charles Anderson'
-  email =  ENV['USER'] == 'canderson' ? 'canderson@everyonesocial.com' : 'master.sparkle@gmail.com'
+  # email =  ENV['USER'] == 'canderson' ? 'canderson@everyonesocial.com' : 'master.sparkle@gmail.com'
+  email =  'master.sparkle@gmail.com'
   fname = "#{src_dir}/gitconfig"
   erb_fname = "#{fname}.erb"
   if File.exist?(fname) && File.mtime(fname) > File.mtime(erb_fname)

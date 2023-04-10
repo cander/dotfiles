@@ -1,3 +1,7 @@
+# 
+# Generated from gitconfig.erb on <%= `date`.chomp %>
+# Edit at your own risk
+#
 [user]
 	name = <%= name %>
 	email = <%= email %>
@@ -7,6 +11,12 @@
     glog = log --pretty=format:'%Cgreen%h%Creset : %s %Cgreen(%an) %Cred%ad%Creset' --graph --date=short
     co = checkout
     bk = checkout -
+
+[core]
+excludesfile = ~/dotfiles/gitignore_global
+
+[hub]
+protocol = https
 
 <% if File.executable? '/usr/local/bin/diffmerge' %>
 [merge]
@@ -19,15 +29,4 @@
 [mergetool "diffmerge"]
 	trustExitCode = true
 	cmd = /usr/local/bin/diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-<% end %>
-
-<% if File.directory? '/opt/boxen' %>
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
-
-[core]
-excludesfile = /opt/boxen/config/git/gitignore
-
-[hub]
-protocol = https
 <% end %>

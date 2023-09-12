@@ -29,5 +29,12 @@ function d {
     esac
 }
 
+# add icd for walk if present
+if which walk > /dev/null 2>&1 ; then
+    function icd {
+      cd "$(walk "$@")"
+    }
+fi
+
 # TODO - would this be useful to resurrect - save dirs? Not per-host, though
 #alias	rd='print $dirs:$PWD > $DOT/savedirs/${HOST}'

@@ -95,6 +95,13 @@ else
 fi
 alias be='bundle exec'
 
+# Python pyenv stuff
+if [ -d "$HOME/.pyenv" ] ; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
 ### miscellaneous aliases
 alias a='alias'
 alias clr='clear'

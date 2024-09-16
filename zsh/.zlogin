@@ -102,6 +102,12 @@ if [ -d "$HOME/.pyenv" ] ; then
     eval "$(pyenv init -)"
 fi
 
+# Dot-net stuff - shudder
+if [ -d /usr/local/share/dotnet ] ; then
+    export DOTNET_ROOT=/usr/local/share/dotnet
+    export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+fi
+
 ### miscellaneous aliases
 alias a='alias'
 alias clr='clear'

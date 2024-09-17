@@ -46,7 +46,7 @@ if type exa > /dev/null ; then
     # lhd should be a function to take args
     alias lhd='lwd --color=always | head'
 else
-    alais ll='ls -l'
+    alias ll='ls -l'
     alias lwd='ls -t -l'
     alias lrd='ls -t -l -u'
     # lhd should be a function to take args

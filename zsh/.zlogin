@@ -108,6 +108,11 @@ if [ -d /usr/local/share/dotnet ] ; then
     export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 fi
 
+# Haskell
+if [ -f "$HOME/.ghcup/env" ] ; then
+    source "$HOME/.ghcup/env"
+fi
+
 ### miscellaneous aliases
 alias a='alias'
 alias clr='clear'

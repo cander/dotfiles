@@ -113,6 +113,9 @@ if [ -f "$HOME/.ghcup/env" ] ; then
     source "$HOME/.ghcup/env"
 fi
 
+# Turn off homebrew auto-updates
+export HOMEBREW_NO_AUTOREMOVE=1
+
 ### miscellaneous aliases
 alias a='alias'
 alias clr='clear'

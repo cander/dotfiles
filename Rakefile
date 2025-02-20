@@ -20,8 +20,8 @@ end
 
 def install_gitconfig(src_dir, dest_dir)
   name = 'Charles Anderson'
-  # email =  ENV['USER'] == 'canderson' ? 'canderson@everyonesocial.com' : 'master.sparkle@gmail.com'
-  email =  'master.sparkle@gmail.com'
+  email =  ENV['USER'] == 'andersc' ? 'andersc@wou.edu' : 'master.sparkle@gmail.com'
+  # email =  'master.sparkle@gmail.com'
   fname = "#{src_dir}/gitconfig"
   erb_fname = "#{fname}.erb"
   if File.exist?(fname) && File.mtime(fname) > File.mtime(erb_fname)

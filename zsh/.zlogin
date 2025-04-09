@@ -111,6 +111,10 @@ if [ -f "$HOME/.dotnet/tools" ] ; then
     export PATH="$PATH:$HOME/.dotnet/tools"
 fi
 
+if [ -f "/Applications/Local/Visual Studio Code.app/Contents/Resources/app/bin" ] ; then
+    export PATH="$PATH:/Applications/Local/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
+
 # Haskell
 if [ -f "$HOME/.ghcup/env" ] ; then
     source "$HOME/.ghcup/env"

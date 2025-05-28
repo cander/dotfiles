@@ -84,6 +84,11 @@ function	gpf {
     fi
 }
 
+#
+# TODO: abstract this stuff. Maybe functions for optionally adding a
+# directory to a PATH or sourcing a file if it exists
+#
+
 ### ruby stuff
 # Prefer rbenv over rvm
 if [ -d "$HOME/.rbenv" ] ; then
@@ -100,6 +105,10 @@ if [ -d "$HOME/.pyenv" ] ; then
     export PYENV_ROOT="$HOME/.pyenv"
     [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
+fi
+# uv set up
+if [ -f "$HOME/.local/bin/env" ] ; then
+    source "$HOME/.local/bin/env"
 fi
 
 # Dot-net stuff - shudder

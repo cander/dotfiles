@@ -116,7 +116,7 @@ if [ -d /usr/local/share/dotnet ] ; then
     export DOTNET_ROOT=/usr/local/share/dotnet
     export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 fi
-if [ -f "$HOME/.dotnet/tools" ] ; then
+if [ -d "$HOME/.dotnet/tools" ] ; then
     export PATH="$PATH:$HOME/.dotnet/tools"
 fi
 

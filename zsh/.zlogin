@@ -17,6 +17,9 @@ bindkey -v
 export KEYTIMEOUT=1
 bindkey -M vicmd v edit-command-line
 
+# allow # as a comment in interactive shells
+setopt interactivecomments
+
 ###  job control commands
 #	j ------ list current jobs in long format
 #       f ------ put named job into foreground

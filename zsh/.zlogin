@@ -144,6 +144,7 @@ alias mv='mv -i'
 alias m='more'
 alias ping=`whence ping`
 alias p8='ping 8.8.8.8'
+alias t8='traceroute -n 8.8.8.8'
 alias rm='rm -i'
 alias U='uptime'
 alias vm='vi [Mm]akefile'
